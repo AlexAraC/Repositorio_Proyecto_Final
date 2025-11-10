@@ -1,24 +1,32 @@
+using Microsoft.EntityFrameworkCore;
+using ProyectoFinal_VitaliAPI.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<VitaliDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("VitaliDb")));
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// (Más adelante agregaremos autenticación básica aquí)
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
 
-app.UseHttpsRedirection();
+app.UseSwagger();
+app.UseSwaggerUI();
 
-app.UseAuthorization();
+app.UseRouting();
+
+// app.UseAuthentication();   // cuando implementes auth
+// app.UseAuthorization();
 
 app.MapControllers();
 
