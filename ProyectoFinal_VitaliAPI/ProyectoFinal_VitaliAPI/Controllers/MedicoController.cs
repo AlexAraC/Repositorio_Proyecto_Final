@@ -3,27 +3,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ProyectoFinal_VitaliAPI.Controllers
 {
-    public class PacienteController : Controller
+    public class MedicoController : Controller
     {
-        // GET: PacienteController
+        // GET: MedicoController
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: PacienteController/Details/5
+        // GET: MedicoController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: PacienteController/Create
+        // GET: MedicoController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PacienteController/Create
+        // POST: MedicoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -38,13 +38,13 @@ namespace ProyectoFinal_VitaliAPI.Controllers
             }
         }
 
-        // GET: PacienteController/Edit/5
+        // GET: MedicoController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: PacienteController/Edit/5
+        // POST: MedicoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -59,13 +59,13 @@ namespace ProyectoFinal_VitaliAPI.Controllers
             }
         }
 
-        // GET: PacienteController/Delete/5
+        // GET: MedicoController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: PacienteController/Delete/5
+        // POST: MedicoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
