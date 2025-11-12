@@ -12,9 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<MedicoService>();
+builder.Services.AddScoped<PacienteServices>();
 
-
-// (Más adelante agregaremos autenticación básica aquí)
 
 var app = builder.Build();
 
@@ -28,8 +27,6 @@ app.UseSwaggerUI();
 
 app.UseRouting();
 
-// app.UseAuthentication();   // cuando implementes auth
-// app.UseAuthorization();
 
 app.MapControllers();
 

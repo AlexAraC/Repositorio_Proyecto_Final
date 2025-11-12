@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;//DbContext, DbSet
 using ProyectoFinal_VitaliAPI.Models;
 
 namespace ProyectoFinal_VitaliAPI.Data

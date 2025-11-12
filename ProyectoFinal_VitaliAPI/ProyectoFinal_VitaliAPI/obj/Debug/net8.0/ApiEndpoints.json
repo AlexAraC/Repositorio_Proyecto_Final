@@ -77,5 +77,84 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.PacienteController",
+    "Method": "GetAll",
+    "RelativePath": "api/Paciente",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.PacienteController",
+    "Method": "Crear",
+    "RelativePath": "api/Paciente",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nuevoPaciente",
+        "Type": "ProyectoFinal_VitaliAPI.Models.Paciente",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.PacienteController",
+    "Method": "GetByCedula",
+    "RelativePath": "api/Paciente/{cedula}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cedula",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.PacienteController",
+    "Method": "Actualizar",
+    "RelativePath": "api/Paciente/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "pacienteActualizado",
+        "Type": "ProyectoFinal_VitaliAPI.Models.Paciente",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.PacienteController",
+    "Method": "Borrar",
+    "RelativePath": "api/Paciente/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

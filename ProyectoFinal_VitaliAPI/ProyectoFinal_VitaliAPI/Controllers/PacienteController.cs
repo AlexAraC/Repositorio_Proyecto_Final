@@ -1,83 +1,69 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoFinal_VitaliAPI.Models;
 
 namespace ProyectoFinal_VitaliAPI.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class PacienteController : Controller
     {
-        // GET: PacienteController
-        public ActionResult Index()
+        private readonly Services.PacienteServices _pacienteServices;
+
+        public PacienteController(Services.PacienteServices pacienteServices)
         {
-            return View();
+            _pacienteServices = pacienteServices;
         }
 
-        // GET: PacienteController/Details/5
-        public ActionResult Details(int id)
+        // ✅ GET: api/Paciente (obtener todos)
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
         {
-            return View();
+            var pacientes = await _pacienteServices.ObtenerTodosPacientesAsync();
+            return Ok(pacientes);
         }
 
-        // GET: PacienteController/Create
-        public ActionResult Create()
+        // ✅ GET: api/Paciente/{cedula} (obtener por cédula)
+        [HttpGet("{cedula}")]
+        public async Task<IActionResult> GetByCedula(string cedula)
         {
-            return View();
+            var paciente = await _pacienteServices.ObtenerPacientePorCedulaAsync(cedula);
+            if (paciente == null)
+                return NotFound(new { mensaje = "Paciente no encontrado" });
+
+            return Ok(paciente);
         }
 
-        // POST: PacienteController/Create
+        // ✅ POST: api/Paciente (crear paciente)
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Crear([FromBody] Paciente nuevoPaciente)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            if (nuevoPaciente == null)
+                return BadRequest(new { mensaje = "Los datos del paciente son requeridos." });
+
+            var pacienteCreado = await _pacienteServices.CrearPacienteAsync(nuevoPaciente);
+            return CreatedAtAction(nameof(GetByCedula), new { cedula = pacienteCreado.Cedula }, pacienteCreado);
         }
 
-        // GET: PacienteController/Edit/5
-        public ActionResult Edit(int id)
+        // ✅ PUT: api/Paciente/{id} (actualizar)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Actualizar(Guid id, [FromBody] Paciente pacienteActualizado)
         {
-            return View();
+            var pacienteExistente = await _pacienteServices.ActualizarPacienteAsync(id, pacienteActualizado);
+            if (pacienteExistente == null)
+                return NotFound(new { mensaje = "Paciente no encontrado" });
+
+            return Ok(new { mensaje = "Paciente actualizado exitosamente" });
         }
 
-        // POST: PacienteController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        // ✅ DELETE: api/Paciente/{id} (eliminar)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Borrar(Guid id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+            var eliminado = await _pacienteServices.EliminarPacienteAsync(id);
+            if (!eliminado)
+                return NotFound(new { mensaje = "Paciente no encontrado" });
 
-        // GET: PacienteController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: PacienteController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return Ok(new { mensaje = "Paciente eliminado exitosamente" });
         }
     }
 }

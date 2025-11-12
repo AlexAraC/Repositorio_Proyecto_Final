@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;//DbContext, Include, ToListAsync, FirstOrDefaultAsync
 using ProyectoFinal_VitaliAPI.Data;
 using ProyectoFinal_VitaliAPI.Models;
 
