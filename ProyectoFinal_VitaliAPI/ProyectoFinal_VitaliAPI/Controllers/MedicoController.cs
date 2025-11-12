@@ -1,83 +1,72 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
+﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoFinal_VitaliAPI.Models;
+using ProyectoFinal_VitaliAPI.Services;
 namespace ProyectoFinal_VitaliAPI.Controllers
 {
-    public class MedicoController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class MedicoController : ControllerBase
     {
-        // GET: MedicoController
-        public ActionResult Index()
+        private readonly MedicoService _medicoService;
+
+        public MedicoController(MedicoService medicoService)
         {
-            return View();
+            _medicoService = medicoService;
         }
 
-        // GET: MedicoController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: MedicoController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: MedicoController/Create
+        // 🔹 Crear un nuevo médico
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> CrearMedico([FromBody] Medico medico)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var nuevoMedico = await _medicoService.CrearMedicoAsync(medico);//vamos los servicios
+            return CreatedAtAction(nameof(ObtenerMedicoPorId), new { id = nuevoMedico.Id }, nuevoMedico);
         }
 
-        // GET: MedicoController/Edit/5
-        public ActionResult Edit(int id)
+        // 🔹 Obtener todos los médicos
+        [HttpGet]
+        public async Task<IActionResult> ObtenerTodosMedicos()
         {
-            return View();
+            var medicos = await _medicoService.ObtenerTodosMedicosAsync();
+            return Ok(medicos);
         }
 
-        // POST: MedicoController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        // 🔹 Obtener médico por ID
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ObtenerMedicoPorId(Guid id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var medico = await _medicoService.ObtenerMedicoPorIdAsync(id);
+            if (medico == null)
+                return NotFound(new { mensaje = "Médico no encontrado" });
+
+            return Ok(medico);
         }
 
-        // GET: MedicoController/Delete/5
-        public ActionResult Delete(int id)
+        // 🔹 Actualizar un médico existente
+        [HttpPut("{id}")]
+        public async Task<IActionResult> ActualizarMedico(Guid id, [FromBody] Medico medicoActualizado)
         {
-            return View();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var medico = await _medicoService.ActualizarMedicoAsync(id, medicoActualizado);
+            if (medico == null)
+                return NotFound(new { mensaje = "Médico no encontrado para actualizar" });
+
+            return Ok(medico);
         }
 
-        // POST: MedicoController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        // 🔹 Eliminar un médico
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> EliminarMedico(Guid id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var eliminado = await _medicoService.EliminarMedicoAsync(id);
+            if (!eliminado)
+                return NotFound(new { mensaje = "Médico no encontrado para eliminar" });
+
+            return Ok(new { mensaje = "Médico eliminado correctamente" });
         }
     }
 }

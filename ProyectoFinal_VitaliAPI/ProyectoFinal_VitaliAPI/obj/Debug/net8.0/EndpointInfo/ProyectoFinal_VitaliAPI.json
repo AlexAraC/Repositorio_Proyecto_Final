@@ -1,0 +1,224 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ProyectoFinal_VitaliAPI",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Medico": {
+      "post": {
+        "tags": [
+          "Medico"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Medico"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Medico"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Medico"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Medico"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Medico/{id}": {
+      "get": {
+        "tags": [
+          "Medico"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Medico"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Medico"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Medico"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Medico"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Medico"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HorarioConsulta": {
+        "required": [
+          "diaSemana"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "diaSemana": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "espacio1": {
+            "type": "string",
+            "nullable": true
+          },
+          "espacio2": {
+            "type": "string",
+            "nullable": true
+          },
+          "espacio3": {
+            "type": "string",
+            "nullable": true
+          },
+          "espacio4": {
+            "type": "string",
+            "nullable": true
+          },
+          "medicoId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Medico": {
+        "required": [
+          "cedulaProfesional",
+          "correo",
+          "especialidad",
+          "estado",
+          "nombre",
+          "telefono"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "nombre": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "cedulaProfesional": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "especialidad": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "telefono": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "correo": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "estado": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "horariosConsulta": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HorarioConsulta"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

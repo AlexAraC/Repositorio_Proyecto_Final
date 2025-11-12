@@ -1,0 +1,81 @@
+[
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.MedicoController",
+    "Method": "CrearMedico",
+    "RelativePath": "api/Medico",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "medico",
+        "Type": "ProyectoFinal_VitaliAPI.Models.Medico",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.MedicoController",
+    "Method": "ObtenerTodosMedicos",
+    "RelativePath": "api/Medico",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.MedicoController",
+    "Method": "ObtenerMedicoPorId",
+    "RelativePath": "api/Medico/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.MedicoController",
+    "Method": "ActualizarMedico",
+    "RelativePath": "api/Medico/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "medicoActualizado",
+        "Type": "ProyectoFinal_VitaliAPI.Models.Medico",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.MedicoController",
+    "Method": "EliminarMedico",
+    "RelativePath": "api/Medico/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
