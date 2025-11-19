@@ -36,14 +36,18 @@ namespace ProyectoFinal_VitaliAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<int>("Fecha")
+                        .HasColumnType("integer");
 
                     b.Property<Guid>("MedicoId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("PacienteId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("espacioDeldia")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -84,9 +88,8 @@ namespace ProyectoFinal_VitaliAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("DiaSemana")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("DiaSemana")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Espacio1")
                         .IsRequired()

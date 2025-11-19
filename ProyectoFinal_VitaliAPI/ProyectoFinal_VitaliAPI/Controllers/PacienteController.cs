@@ -14,15 +14,15 @@ namespace ProyectoFinal_VitaliAPI.Controllers
             _pacienteServices = pacienteServices;
         }
 
-        // ✅ GET: api/Paciente (obtener todos)
-        [HttpGet]
+        // ✅ GET: (obtener todos)
+        [HttpGet]//metedo Task<IActionResult>    para que devuelva ok, notfound, badrequest
         public async Task<IActionResult> GetAll()
         {
             var pacientes = await _pacienteServices.ObtenerTodosPacientesAsync();
             return Ok(pacientes);
         }
 
-        // ✅ GET: api/Paciente/{cedula} (obtener por cédula)
+        //  GET
         [HttpGet("{cedula}")]
         public async Task<IActionResult> GetByCedula(string cedula)
         {
@@ -33,7 +33,7 @@ namespace ProyectoFinal_VitaliAPI.Controllers
             return Ok(paciente);
         }
 
-        // ✅ POST: api/Paciente (crear paciente)
+        // POST
         [HttpPost]
         public async Task<IActionResult> Crear([FromBody] Paciente nuevoPaciente)
         {
@@ -44,7 +44,7 @@ namespace ProyectoFinal_VitaliAPI.Controllers
             return CreatedAtAction(nameof(GetByCedula), new { cedula = pacienteCreado.Cedula }, pacienteCreado);
         }
 
-        // ✅ PUT: api/Paciente/{id} (actualizar)
+        // ✅ PUT
         [HttpPut("{id}")]
         public async Task<IActionResult> Actualizar(Guid id, [FromBody] Paciente pacienteActualizado)
         {
@@ -55,7 +55,7 @@ namespace ProyectoFinal_VitaliAPI.Controllers
             return Ok(new { mensaje = "Paciente actualizado exitosamente" });
         }
 
-        // ✅ DELETE: api/Paciente/{id} (eliminar)
+        // DELETE
         [HttpDelete("{id}")]
         public async Task<IActionResult> Borrar(Guid id)
         {

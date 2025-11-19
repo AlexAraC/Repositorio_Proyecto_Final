@@ -6,8 +6,7 @@ namespace ProyectoFinal_VitaliAPI.Services
 {
     public class MedicoService
     {
-        private readonly VitaliDbContext context;
-
+        private readonly VitaliDbContext context;//DbContext para acceder a la base de datos
         public MedicoService(VitaliDbContext dbContext)
         {
             context = dbContext;

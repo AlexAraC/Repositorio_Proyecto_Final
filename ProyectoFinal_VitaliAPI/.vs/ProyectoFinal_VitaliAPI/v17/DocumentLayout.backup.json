@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\source\\repos\\Repositorio_Proyecto_Final\\ProyectoFinal_VitaliAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4A967E2A-5EE9-4210-BA34-8601DF64D5F0}|ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI.csproj|c:\\users\\usuario\\source\\repos\\repositorio_proyecto_final\\proyectofinal_vitaliapi\\proyectofinal_vitaliapi\\migrations\\20251119195103_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A967E2A-5EE9-4210-BA34-8601DF64D5F0}|ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI.csproj|solutionrelative:proyectofinal_vitaliapi\\migrations\\20251119195103_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A967E2A-5EE9-4210-BA34-8601DF64D5F0}|ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI.csproj|c:\\users\\usuario\\source\\repos\\repositorio_proyecto_final\\proyectofinal_vitaliapi\\proyectofinal_vitaliapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4A967E2A-5EE9-4210-BA34-8601DF64D5F0}|ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI.csproj|solutionrelative:proyectofinal_vitaliapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A967E2A-5EE9-4210-BA34-8601DF64D5F0}|ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI.csproj|c:\\users\\usuario\\source\\repos\\repositorio_proyecto_final\\proyectofinal_vitaliapi\\proyectofinal_vitaliapi\\models\\medico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A967E2A-5EE9-4210-BA34-8601DF64D5F0}|ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI.csproj|solutionrelative:proyectofinal_vitaliapi\\models\\medico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A967E2A-5EE9-4210-BA34-8601DF64D5F0}|ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI.csproj|c:\\users\\usuario\\source\\repos\\repositorio_proyecto_final\\proyectofinal_vitaliapi\\proyectofinal_vitaliapi\\controllers\\pacientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A967E2A-5EE9-4210-BA34-8601DF64D5F0}|ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI.csproj|solutionrelative:proyectofinal_vitaliapi\\controllers\\pacientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20251119195103_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\source\\repos\\Repositorio_Proyecto_Final\\ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI\\Migrations\\20251119195103_InitialCreate.cs",
+              "RelativeDocumentMoniker": "ProyectoFinal_VitaliAPI\\Migrations\\20251119195103_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\Usuario\\source\\repos\\Repositorio_Proyecto_Final\\ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI\\Migrations\\20251119195103_InitialCreate.cs",
+              "RelativeToolTip": "ProyectoFinal_VitaliAPI\\Migrations\\20251119195103_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T19:51:03.642Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Medico.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\source\\repos\\Repositorio_Proyecto_Final\\ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI\\Models\\Medico.cs",
+              "RelativeDocumentMoniker": "ProyectoFinal_VitaliAPI\\Models\\Medico.cs",
+              "ToolTip": "C:\\Users\\Usuario\\source\\repos\\Repositorio_Proyecto_Final\\ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI\\Models\\Medico.cs",
+              "RelativeToolTip": "ProyectoFinal_VitaliAPI\\Models\\Medico.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-19T19:46:35.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Usuario\\source\\repos\\Repositorio_Proyecto_Final\\ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "ProyectoFinal_VitaliAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\Usuario\\source\\repos\\Repositorio_Proyecto_Final\\ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI\\appsettings.json",
+              "RelativeToolTip": "ProyectoFinal_VitaliAPI\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-19T19:40:45.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PacienteController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\source\\repos\\Repositorio_Proyecto_Final\\ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI\\Controllers\\PacienteController.cs",
+              "RelativeDocumentMoniker": "ProyectoFinal_VitaliAPI\\Controllers\\PacienteController.cs",
+              "ToolTip": "C:\\Users\\Usuario\\source\\repos\\Repositorio_Proyecto_Final\\ProyectoFinal_VitaliAPI\\ProyectoFinal_VitaliAPI\\Controllers\\PacienteController.cs",
+              "RelativeToolTip": "ProyectoFinal_VitaliAPI\\Controllers\\PacienteController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T22:28:15.207Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

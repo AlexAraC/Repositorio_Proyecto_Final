@@ -12,8 +12,8 @@ using ProyectoFinal_VitaliAPI.Data;
 namespace ProyectoFinal_VitaliAPI.Migrations
 {
     [DbContext(typeof(VitaliDbContext))]
-    [Migration("20251112051332_ActualizarHorarioConsulta")]
-    partial class ActualizarHorarioConsulta
+    [Migration("20251119195103_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,14 +39,18 @@ namespace ProyectoFinal_VitaliAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("Fecha")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<int>("Fecha")
+                        .HasColumnType("integer");
 
                     b.Property<Guid>("MedicoId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("PacienteId")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("espacioDeldia")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -87,9 +91,8 @@ namespace ProyectoFinal_VitaliAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("DiaSemana")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("DiaSemana")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Espacio1")
                         .IsRequired()

@@ -3,7 +3,6 @@ using System.Collections.Generic;//Importaciones para List
 using System.ComponentModel.DataAnnotations;//Atribhutos como [Key], [Required]
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;//Atributos de esquema como [ForeignKey] o [NotMapped]
-using System.Text.Json.Serialization;
 namespace ProyectoFinal_VitaliAPI.Models
 {
     public class Medico
@@ -39,9 +38,9 @@ namespace ProyectoFinal_VitaliAPI.Models
         public Guid Id { get; set; } = Guid.NewGuid(); // Clave primaria
 
         [Required]
-        public string DiaSemana { get; set; } 
+        public int DiaSemana { get; set; } //0 = Domingo, 1=Lunes, ..., 6=Sábado
 
-        public string Espacio1 { get; set; } = "Vacio";
+        public string Espacio1 { get; set; } = "Vacio"; // "Vacio" o "Ocupado"
         public string Espacio2 { get; set; } = "Vacio";
         public string Espacio3 { get; set; } = "Vacio";
         public string Espacio4 { get; set; } = "Vacio";
