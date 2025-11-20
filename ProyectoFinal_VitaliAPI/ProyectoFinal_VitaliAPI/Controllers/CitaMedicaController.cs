@@ -1,83 +1,63 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoFinal_VitaliAPI.Models;
+using ProyectoFinal_VitaliAPI.Services;
 
 namespace ProyectoFinal_VitaliAPI.Controllers
 {
-    public class CitaMedicaController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CitaMedicaController : ControllerBase
     {
-        // GET: CitaMedicaController
-        public ActionResult Index()
+        private readonly CitaMedicaService citaService;
+
+        public CitaMedicaController(CitaMedicaService service)
         {
-            return View();
+            citaService = service;
         }
 
-        // GET: CitaMedicaController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: CitaMedicaController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CitaMedicaController/Create
+        // POST -> Crear cita
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult<CitaMedica>> CrearCita(CitaMedica nuevaCita)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var cita = await citaService.CrearCitaAsync(nuevaCita);
+            return Ok(cita);
         }
 
-        // GET: CitaMedicaController/Edit/5
-        public ActionResult Edit(int id)
+        // GET -> Listar citas
+        [HttpGet]
+        public async Task<ActionResult<List<CitaMedica>>> ObtenerTodas()
         {
-            return View();
+            return Ok(await citaService.ObtenerTodasCitasAsync());
         }
 
-        // POST: CitaMedicaController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        // GET -> Buscar cita por ID
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CitaMedica>> ObtenerPorId(Guid id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var cita = await citaService.ObtenerCitaPorIdAsync(id);
+            if (cita == null)
+                return NotFound();
+            return Ok(cita);
         }
 
-        // GET: CitaMedicaController/Delete/5
-        public ActionResult Delete(int id)
+        // PUT -> Actualizar cita
+        [HttpPut("{id}")]
+        public async Task<ActionResult<CitaMedica>> Actualizar(Guid id, CitaMedica cita)
         {
-            return View();
+            var actualizada = await citaService.ActualizarCitaAsync(id, cita);
+            if (actualizada == null)
+                return NotFound();
+            return Ok(actualizada);
         }
 
-        // POST: CitaMedicaController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        // DELETE -> Eliminar cita
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Eliminar(Guid id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var eliminado = await citaService.EliminarCitaAsync(id);
+            if (!eliminado)
+                return NotFound();
+            return Ok(new { mensaje = "Cita eliminada" });
         }
     }
 }

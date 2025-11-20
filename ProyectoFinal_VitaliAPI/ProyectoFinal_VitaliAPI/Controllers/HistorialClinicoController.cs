@@ -1,20 +1,36 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoFinal_VitaliAPI.Models;
+using ProyectoFinal_VitaliAPI.Services;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ProyectoFinal_VitaliAPI.Controllers
 {
     public class HistorialClinicoController : Controller
     {
-        // GET: HistorialClinicoController
-        public ActionResult Index()
+        private readonly HistorialClinicoService _historialService;
+
+        public HistorialClinicoController(HistorialClinicoService historialService)
         {
-            return View();
+            _historialService = historialService;
+        }
+
+        // GET: HistorialClinicoController
+        public async Task<ActionResult> Index()
+        {
+            var historiales = await _historialService.ObtenerTodos();
+            return View(historiales);
         }
 
         // GET: HistorialClinicoController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var historial = await _historialService.ObtenerPorId(id);
+            if (historial == null)
+            {
+                return NotFound();
+            }
+            return View(historial);
         }
 
         // GET: HistorialClinicoController/Create
@@ -26,43 +42,50 @@ namespace ProyectoFinal_VitaliAPI.Controllers
         // POST: HistorialClinicoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(HistorialClinico historial)
         {
-            try
+            if (ModelState.IsValid)
             {
+                await _historialService.Crear(historial);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(historial);
         }
 
         // GET: HistorialClinicoController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var historial = await _historialService.ObtenerPorId(id);
+            if (historial == null)
+            {
+                return NotFound();
+            }
+            return View(historial);
         }
 
         // POST: HistorialClinicoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, HistorialClinico historial)
         {
-            try
+            if (id != historial.Id)
             {
+                return BadRequest();
+            }
+
+            if (ModelState.IsValid)
+            {
+                await _historialService.Actualizar(historial);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(historial);
         }
 
         // GET: HistorialClinicoController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            // No se implementa delete
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: HistorialClinicoController/Delete/5
@@ -70,14 +93,8 @@ namespace ProyectoFinal_VitaliAPI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            // No se implementa delete
+            return RedirectToAction(nameof(Index));
         }
     }
 }

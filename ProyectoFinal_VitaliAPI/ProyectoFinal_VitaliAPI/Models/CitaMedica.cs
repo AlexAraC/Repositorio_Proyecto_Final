@@ -9,5 +9,6 @@
         public string espacioDeldia { get; set; } // "Espacio1"/"Espacio2"/"Espacio3"/"Espacio4"
         public string Especialidad { get; set; }
         public string Estado { get; set; } // "Confirmada"/"Cancelada"/"Pendiente"
+        public object Paciente { get; internal set; }
     }
 }
