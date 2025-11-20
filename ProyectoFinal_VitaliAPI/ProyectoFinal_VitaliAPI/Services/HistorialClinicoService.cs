@@ -1,50 +1,67 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProyectoFinal_VitaliAPI.Data;
 using ProyectoFinal_VitaliAPI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProyectoFinal_VitaliAPI.Services
 {
     public class HistorialClinicoService
     {
-        private readonly VitaliDbContext context;//DbContext para acceder a la base de datos
+        private readonly VitaliDbContext context;
 
-        public HistorialClinicoService(VitaliDbContext dbContext)
+        public HistorialClinicoService(VitaliDbContext context)
         {
-            context = dbContext;
+            this.context = context;
         }
 
-        // CREATE
-        public async Task<HistorialClinico> Crear(HistorialClinico historial)
+        // Crear historial
+        public async Task<HistorialClinico> CrearAsync(HistorialClinico historial)
         {
             context.HistorialesClinicos.Add(historial);
             await context.SaveChangesAsync();
             return historial;
         }
 
-        // READ ALL
-        public async Task<List<HistorialClinico>> ObtenerTodos()
+        // Obtener todos
+        public async Task<IEnumerable<HistorialClinico>> GetAllAsync()
         {
             return await context.HistorialesClinicos.ToListAsync();
         }
 
-        // READ BY ID
-        public async Task<HistorialClinico> ObtenerPorId(int id)
+        // Obtener por ID
+        public async Task<HistorialClinico?> GetByIdAsync(Guid id)
         {
-            return await context.HistorialesClinicos.FindAsync(id);
+            return await context.HistorialesClinicos.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        // UPDATE
-        public async Task<HistorialClinico> Actualizar(HistorialClinico historial)
+        // Actualizar
+        public async Task<HistorialClinico?> UpdateAsync(Guid id, HistorialClinico model)
         {
-            context.Entry(historial).State = EntityState.Modified;
+            var historial = await context.HistorialesClinicos.FindAsync(id);
+
+            if (historial == null)
+                return null;
+
+            historial.PacienteId = model.PacienteId;
+            historial.MedicoId = model.MedicoId;
+            historial.Diagnostico = model.Diagnostico;
+            historial.Tratamiento = model.Tratamiento;
+            historial.FechaConsulta = model.FechaConsulta;
+
             await context.SaveChangesAsync();
             return historial;
         }
 
-        // NO DELETE - No se implementa como solicitaste
+        // Eliminar
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            var historial = await context.HistorialesClinicos.FindAsync(id);
+
+            if (historial == null)
+                return false;
+
+            context.HistorialesClinicos.Remove(historial);
+            await context.SaveChangesAsync();
+            return true;
+        }
     }
 }

@@ -1,100 +1,56 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProyectoFinal_VitaliAPI.Models;
 using ProyectoFinal_VitaliAPI.Services;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ProyectoFinal_VitaliAPI.Controllers
 {
-    public class HistorialClinicoController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class HistorialClinicoController : ControllerBase
     {
-        private readonly HistorialClinicoService _historialService;
+        private readonly HistorialClinicoService service;
 
-        public HistorialClinicoController(HistorialClinicoService historialService)
+        public HistorialClinicoController(HistorialClinicoService service)
         {
-            _historialService = historialService;
+            this.service = service;
         }
 
-        // GET: HistorialClinicoController
-        public async Task<ActionResult> Index()
-        {
-            var historiales = await _historialService.ObtenerTodos();
-            return View(historiales);
-        }
-
-        // GET: HistorialClinicoController/Details/5
-        public async Task<ActionResult> Details(int id)
-        {
-            var historial = await _historialService.ObtenerPorId(id);
-            if (historial == null)
-            {
-                return NotFound();
-            }
-            return View(historial);
-        }
-
-        // GET: HistorialClinicoController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: HistorialClinicoController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(HistorialClinico historial)
+        public async Task<IActionResult> Crear(HistorialClinico historial)
         {
-            if (ModelState.IsValid)
-            {
-                await _historialService.Crear(historial);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(historial);
+            var result = await service.CrearAsync(historial);
+            return Ok(result);
         }
 
-        // GET: HistorialClinicoController/Edit/5
-        public async Task<ActionResult> Edit(int id)
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
         {
-            var historial = await _historialService.ObtenerPorId(id);
-            if (historial == null)
-            {
-                return NotFound();
-            }
-            return View(historial);
+            var data = await service.GetAllAsync();
+            return Ok(data);
         }
 
-        // POST: HistorialClinicoController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, HistorialClinico historial)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
         {
-            if (id != historial.Id)
-            {
-                return BadRequest();
-            }
-
-            if (ModelState.IsValid)
-            {
-                await _historialService.Actualizar(historial);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(historial);
+            var data = await service.GetByIdAsync(id);
+            if (data == null) return NotFound("No existe historial con ese ID");
+            return Ok(data);
         }
 
-        // GET: HistorialClinicoController/Delete/5
-        public ActionResult Delete(int id)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, HistorialClinico historial)
         {
-            // No se implementa delete
-            return RedirectToAction(nameof(Index));
+            var data = await service.UpdateAsync(id, historial);
+            if (data == null) return NotFound("No existe historial con ese ID");
+            return Ok(data);
         }
 
-        // POST: HistorialClinicoController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
         {
-            // No se implementa delete
-            return RedirectToAction(nameof(Index));
+            var deleted = await service.DeleteAsync(id);
+            if (!deleted) return NotFound("No existe historial con ese ID");
+            return Ok("Historial eliminado");
         }
     }
 }

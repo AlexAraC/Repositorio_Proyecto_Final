@@ -13,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<MedicoService>();
 builder.Services.AddScoped<PacienteServices>();
+builder.Services.AddScoped<CitaMedicaService>();
+builder.Services.AddScoped<HistorialClinicoService>();
 
 
 var app = builder.Build();

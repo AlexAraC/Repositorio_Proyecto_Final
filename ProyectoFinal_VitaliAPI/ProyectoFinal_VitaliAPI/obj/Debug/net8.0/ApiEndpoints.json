@@ -1,15 +1,21 @@
 [
   {
     "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.CitaMedicaController",
-    "Method": "GetCitas",
+    "Method": "CrearCita",
     "RelativePath": "api/CitaMedica",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "nuevaCita",
+        "Type": "ProyectoFinal_VitaliAPI.Models.CitaMedica",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ProyectoFinal_VitaliAPI.Models.CitaMedica, ProyectoFinal_VitaliAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "ProyectoFinal_VitaliAPI.Models.CitaMedica",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -21,12 +27,63 @@
   },
   {
     "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.CitaMedicaController",
-    "Method": "CrearCita",
+    "Method": "ObtenerTodas",
     "RelativePath": "api/CitaMedica",
-    "HttpMethod": "POST",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[ProyectoFinal_VitaliAPI.Models.CitaMedica, ProyectoFinal_VitaliAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.CitaMedicaController",
+    "Method": "ObtenerPorId",
+    "RelativePath": "api/CitaMedica/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ProyectoFinal_VitaliAPI.Models.CitaMedica",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.CitaMedicaController",
+    "Method": "Actualizar",
+    "RelativePath": "api/CitaMedica/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
       {
         "Name": "cita",
         "Type": "ProyectoFinal_VitaliAPI.Models.CitaMedica",
@@ -47,8 +104,50 @@
   },
   {
     "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.CitaMedicaController",
-    "Method": "GetCita",
+    "Method": "Eliminar",
     "RelativePath": "api/CitaMedica/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.HistorialClinicoController",
+    "Method": "Crear",
+    "RelativePath": "api/HistorialClinico",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "historial",
+        "Type": "ProyectoFinal_VitaliAPI.Models.HistorialClinico",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.HistorialClinicoController",
+    "Method": "GetAll",
+    "RelativePath": "api/HistorialClinico",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.HistorialClinicoController",
+    "Method": "GetById",
+    "RelativePath": "api/HistorialClinico/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -59,22 +158,12 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "ProyectoFinal_VitaliAPI.Models.CitaMedica",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.CitaMedicaController",
-    "Method": "ActualizarCita",
-    "RelativePath": "api/CitaMedica/{id}",
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.HistorialClinicoController",
+    "Method": "Update",
+    "RelativePath": "api/HistorialClinico/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -85,17 +174,17 @@
         "IsRequired": true
       },
       {
-        "Name": "citaActualizada",
-        "Type": "ProyectoFinal_VitaliAPI.Models.CitaMedica",
+        "Name": "historial",
+        "Type": "ProyectoFinal_VitaliAPI.Models.HistorialClinico",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.CitaMedicaController",
-    "Method": "EliminarCita",
-    "RelativePath": "api/CitaMedica/{id}",
+    "ContainingType": "ProyectoFinal_VitaliAPI.Controllers.HistorialClinicoController",
+    "Method": "Delete",
+    "RelativePath": "api/HistorialClinico/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
